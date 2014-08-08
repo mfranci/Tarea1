@@ -1,32 +1,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context=".InicioActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".InicioActivity">
 
     <TextView
         android:id="@+id/lblTipoUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Por favor, ingrese los siguientes datos:"
-        />
+        android:text="Por favor, ingrese los siguientes datos:" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:gravity="center">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
 
         <EditText
             android:id="@+id/txtUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="25"
-            android:hint="@string/lblUsuario"/>
+            android:hint="@string/lblUsuario" />
 
         <EditText
             android:id="@+id/txtNombre"
@@ -34,25 +33,25 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtUsuario"
             android:ems="25"
-            android:hint="@string/lblNombre"/>
+            android:hint="@string/lblNombre" />
 
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/lblPassword"
-            android:inputType="textPassword"
+            android:layout_below="@+id/txtNombre"
             android:ems="25"
-            android:layout_below="@+id/txtNombre" />
+            android:hint="@string/lblPassword"
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/txtPassword2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/Confirme_password"
-            android:inputType="textPassword"
+            android:layout_below="@+id/txtPassword"
             android:ems="25"
-            android:layout_below="@+id/txtPassword" />
+            android:hint="@string/Confirme_password"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnCrearUsuario"
@@ -60,9 +59,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtPassword2"
             android:ems="25"
-            android:text="@string/crear_usuario"/>
-
-
+            android:onClick="accionCrearUsuario"
+            android:text="@string/crear_usuario" />
 
     </RelativeLayout>
 </RelativeLayout>

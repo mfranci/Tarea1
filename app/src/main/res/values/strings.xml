@@ -16,5 +16,6 @@
     <string name="crear_usuario">Crear Usuario</string>
     <string name="title_activity_ficha_usuario">FichaUsuarioActivity</string>
     <string name="nombre_usuario">Nombre Usuario:</string>
+    <string name="title_activity_agenda">AgendaActivity</string>
 
 </resources>

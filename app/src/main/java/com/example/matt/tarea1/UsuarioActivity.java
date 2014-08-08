@@ -3,6 +3,7 @@ package com.example.matt.tarea1;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,16 +11,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.matt.tarea1.dao.UsuarioDAO;
+import com.example.matt.tarea1.domain.Usuario;
+
 public class UsuarioActivity extends Activity {
-   int contador = 0;
-   int contador_limite = 3;
+    int contador = 0;
+    private final int CONTADOR_INCORRECTO = 3;
+    UsuarioDAO usuarioDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(getClass().toString(), "onCreate()");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
+
+        usuarioDAO = new UsuarioDAO(this);
+        usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
     }
 
+    @Override
+    protected void onStop() {
+        Log.d(getClass().toString(), "onStop()");
+        usuarioDAO.close();
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -40,35 +55,41 @@ public class UsuarioActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-   public void accionCancelar(View view) {
-      finish();
-   }
+    public void accionCancelar(View view) {
+        finish();
+    }
 
-   public void accionIngresar(View view) {
-      auntenticarUsuario(view);
-   }
+    public void accionIngresar(View view) {
+        auntenticarUsuario(view);
+    }
 
-   public void auntenticarUsuario(View view) {
-      final int CONTADOR_INCORRECTO = 3;
-      EditText txtUsuario = (EditText) findViewById(R.id.txtUsuario1);
-      EditText txtPassword = (EditText) findViewById(R.id.txtPassword1);
-      TextView lblMensaje = (TextView) findViewById(R.id.txtMensaje);
+    public void auntenticarUsuario(View view) {
+        EditText txtUsuario = (EditText) findViewById(R.id.txtUsuario1);
+        EditText txtPassword = (EditText) findViewById(R.id.txtPassword1);
+        TextView lblMensaje = (TextView) findViewById(R.id.txtMensaje);
 
-      String usuario = txtUsuario.getText().toString();
-      String password = txtPassword.getText().toString();
-      if (usuario.equals("1") && password.equals("2")) {
-         Toast.makeText(this, "Ingresando como usuario...", Toast.LENGTH_SHORT).show();
-         Intent intent = new Intent(this, FichaUsuarioActivity.class);
-         intent.putExtra("USUARIO", txtUsuario.getText().toString());
-         startActivity(intent);
-      } else {
-         contador++;
-         if (contador == CONTADOR_INCORRECTO) {
-            this.finish();
-         }
+        String sUsuario = txtUsuario.getText().toString();
+        String sPassword = txtPassword.getText().toString();
 
-         lblMensaje.setText("Usuario/Pass incorrecto, le quedan " + (CONTADOR_INCORRECTO - contador) + " intentos.");
-         lblMensaje.setVisibility(View.VISIBLE);
-      }
-   }
+        if (sUsuario.length() > 0 && sPassword.length() > 0) {
+            Usuario usuario = usuarioDAO.get(sUsuario);
+
+            if (usuario != null) {
+                //usuario logeado
+                Intent intent = new Intent(this, FichaUsuarioActivity.class);
+                intent.putExtra("INTENT_KEY_USUARIO", usuario.getUsuario());
+                startActivity(intent);
+            } else {
+                contador++;
+                if (contador == CONTADOR_INCORRECTO) {
+                    this.finish();
+                }
+
+                lblMensaje.setText("Usuario/Pass incorrecto, le quedan " + (CONTADOR_INCORRECTO - contador) + " intentos.");
+                lblMensaje.setVisibility(View.VISIBLE);
+            }
+        } else {
+            Toast.makeText(this, "Debe de completarse todos los campos!", Toast.LENGTH_LONG).show();
+        }
+    }
 }

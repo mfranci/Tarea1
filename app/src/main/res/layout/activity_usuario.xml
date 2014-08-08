@@ -1,26 +1,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/lblInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Sistema Control"/>
+        android:text="Sistema Control" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:gravity="center"
-        >
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/lblUsuario1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Usuario"/>
+            android:text="Usuario" />
 
         <EditText
             android:id="@+id/txtUsuario1"
@@ -29,9 +28,9 @@
             android:layout_alignBottom="@+id/lblUsuario1"
             android:layout_marginLeft="32dp"
             android:layout_toRightOf="@+id/lblUsuario1"
-            android:ems="10"
-            >
-            <requestFocus/>
+            android:ems="10">
+
+            <requestFocus />
         </EditText>
 
         <TextView
@@ -42,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblUsuario1"
             android:layout_marginTop="20dp"
-            android:text="Password"/>
+            android:text="Password" />
 
         <EditText
             android:id="@+id/txtPassword1"
@@ -52,7 +51,7 @@
             android:layout_alignLeft="@+id/txtUsuario1"
             android:layout_toRightOf="@+id/lblPassword1"
             android:ems="10"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnIngresar"
@@ -62,7 +61,7 @@
             android:layout_below="@+id/lblPassword1"
             android:layout_marginTop="19dp"
             android:onClick="accionIngresar"
-            android:text="Ingresar"/>
+            android:text="Ingresar" />
 
         <Button
             android:layout_width="wrap_content"
@@ -70,7 +69,7 @@
             android:layout_alignTop="@+id/btnIngresar"
             android:layout_toLeftOf="@+id/btnIngresar"
             android:onClick="accionCancelar"
-            android:text="Cancelar"/>
+            android:text="Cancelar" />
 
     </RelativeLayout>
 
@@ -81,5 +80,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Usuario/Contraseña errada"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 </RelativeLayout>
