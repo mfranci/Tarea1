@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Student on 05/07/2014.
+ * Created by Matias FRANCI on 08/08/2014.
  */
 public class UsuarioDAO {
     MySqlOpenHelper mySqlOpenHelper;

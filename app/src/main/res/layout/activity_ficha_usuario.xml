@@ -9,7 +9,8 @@
         android:layout_alignParentEnd="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
+        android:padding="15dp"
         android:src="@drawable/ic_launcher" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

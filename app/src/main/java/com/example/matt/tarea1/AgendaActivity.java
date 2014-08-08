@@ -1,6 +1,7 @@
 package com.example.matt.tarea1;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import com.example.matt.tarea1.domain.Tarea;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AgendaActivity extends Activity {
+public class AgendaActivity extends ListActivity {
     TareaDAO tareaDAO;
     Tarea tarea= null;
     List<Tarea> tareas;
@@ -36,9 +37,12 @@ public class AgendaActivity extends Activity {
             tareas = new ArrayList<Tarea>();
             tareas = tareaDAO.getAll();
 
-            if (tareas != null) {
+            if (tareas != null && tareas.size() > 0 ) {
                 Toast.makeText(this, "Mostrando listado de tareas", Toast.LENGTH_LONG).show();
                 Log.d(getClass().toString(), "Mostrando listado de tareas");
+
+                TareaAdapter adapter = new TareaAdapter(this, R.layout.item_tarea, tareas);
+                setListAdapter(adapter);
             }else{
                 //cargo temporalmente varias tareas.
                 for (int i = 0; i < 20; i++) {

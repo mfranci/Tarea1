@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Created by Student on 05/07/2014.
+ * Created by Matias FRANCI on 08/08/2014.
  */
 public class MySqlOpenHelper extends SQLiteOpenHelper {
     //tabla USUARIOS

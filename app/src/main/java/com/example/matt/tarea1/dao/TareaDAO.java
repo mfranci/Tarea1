@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Student on 05/07/2014.
+ * Created by Matias FRANCI on 08/08/2014.
  */
 public class TareaDAO {
     MySqlOpenHelper mySqlOpenHelper;
@@ -64,7 +64,14 @@ public class TareaDAO {
         Cursor cursor = db.query("tareas", columnas, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            tareas.add(new Tarea(cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+            tareas.add(
+                    new Tarea(
+                        cursor.getInt(cursor.getColumnIndex("id")),
+                        cursor.getString(cursor.getColumnIndex("nombre")),
+                        cursor.getString(cursor.getColumnIndex("descripcion")),
+                        cursor.getString(cursor.getColumnIndex("fecha")),
+                        cursor.getString(cursor.getColumnIndex("hora"))
+                    ));
             cursor.moveToNext();
         }
         cursor.close();

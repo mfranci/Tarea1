@@ -1,21 +1,30 @@
 package com.example.matt.tarea1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.matt.tarea1.dao.UsuarioDAO;
 import com.example.matt.tarea1.domain.Usuario;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class FichaUsuarioActivity extends Activity {
     UsuarioDAO usuarioDAO;
     Usuario usuario = null;
+
+    ImageView imgUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +48,9 @@ public class FichaUsuarioActivity extends Activity {
                 EditText txtNombreUsuario = (EditText) findViewById(R.id.txtNombreUsuario);
                 EditText txtUsuario = (EditText) findViewById(R.id.txtUser);
                 EditText txtPassword = (EditText) findViewById(R.id.txtPassWrd);
-                //TODO falta cargar imagen aleatoria y guardar en preferencias
+
+                //imagen avatar
+                imgUsuario = (ImageView) findViewById(R.id.imgUsuario);
 
                 txtNombreUsuario.setText(usuario.getNombre());
                 txtUsuario.setText(usuario.getUsuario());
@@ -60,6 +71,35 @@ public class FichaUsuarioActivity extends Activity {
         Log.d(getClass().toString(), "onStop()");
         usuarioDAO.close();
         super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        //Preferencias del avatar.
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getString(R.string.NombreArchivoPreferenciasXML), Context.MODE_PRIVATE);
+
+        int imgRsrcAvatar = sharedPreferences.getInt("PREF_KEY_USER_"+usuario.getUsuario(), 0);
+
+        if(imgRsrcAvatar == 0){
+            Log.d(this.getClass().toString(), "Asignar aleatoreo");
+
+            //genero id aleatoreo del avatar
+            int[] lstImgRsAvatar = {R.drawable.ic_avatar_01,R.drawable.ic_avatar_02,R.drawable.ic_avatar_03,
+                    R.drawable.ic_avatar_04,R.drawable.ic_avatar_05,R.drawable.ic_avatar_06,};
+            Random random = new Random();
+            int randomNumber = random.nextInt(5);
+            imgRsrcAvatar = lstImgRsAvatar[randomNumber];
+
+            //guardo avatar random en preferencias
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt("PREF_KEY_USER_"+usuario.getUsuario(), imgRsrcAvatar);
+            editor.commit();
+        }
+
+        //cargo una imagen
+        imgUsuario.setImageResource(imgRsrcAvatar);
+
+        super.onResume();
     }
 
     @Override
