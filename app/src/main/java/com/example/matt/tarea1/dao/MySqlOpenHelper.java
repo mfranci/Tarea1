@@ -9,41 +9,61 @@ import android.util.Log;
  * Created by Matias FRANCI on 08/08/2014.
  */
 public class MySqlOpenHelper extends SQLiteOpenHelper {
-    //tabla USUARIOS
-    private String QRY_CREATE_TABLE_USUARIOS = "CREATE TABLE usuarios(usuario TEXT NOT NULL PRIMARY KEY," +
-            "nombre TEXT NOT NULL," +
-            "password TEXT NOT NULL)";
-    private String QRY_DROP_TABLE_USUARIOS = "DROP TABLE IF EXISTS usuarios";
+   public static final int DATABASE_VERSION = 3; // versión de DB
+   public static final String DATABASE_NAME = "agenda.db";
+   public static final String TABLA_USUARIOS = "usuarios";
+   public static final String TABLA_TAREAS = "tareas";
 
-    //tabla TAREAS
-    private String QRY_CREATE_TABLE_TAREAS = "CREATE TABLE tareas(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "usuario_id TEXT NOT NULL," +
-            "nombre TEXT NOT NULL," +
-            "descripcion TEXT NOT NULL," +
-            "fecha TEXT NOT NULL," +
-            "hora TEXT NOT NULL)";
-    private String QRY_DROP_TABLE_TAREAS = "DROP TABLE IF EXISTS tareas";
+   // tabla usuarios
+   public static final String USUARIOS_KEY_USUARIO = "usuario";
+   public static final String USUARIOS_KEY_NOMBRE = "nombre";
+   public static final String USUARIOS_KEY_PASSWORD = "password";
 
-    public MySqlOpenHelper(Context context) {
-        super(context, "agenda.db", null, 3);
-        //la base de datos se crea en la carpeta "DATABASE".
-        Log.d("MySqlOpenHelper", "Constructor-> crea databse");
-    }
+   // tabla tarea
+   public static final String TAREAS_KEY_ID = "id";
+   public static final String TAREAS_KEY_USUARIO_ID = "usuario_id";
+   public static final String TAREAS_KEY_NOMBRE = "nombre";
+   public static final String TAREAS_KEY_DESCRIPCION = "descripcion";
+   public static final String TAREAS_KEY_FECHA = "fecha";
+   public static final String TAREAS_KEY_HORA = "hora";
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        Log.d("MySqlOpenHelper->onCreate", "Creando tabla USUARIOS");
-        db.execSQL(QRY_CREATE_TABLE_USUARIOS);
-        Log.d("MySqlOpenHelper->onCreate", "Creando tabla TAREAS");
-        db.execSQL(QRY_CREATE_TABLE_TAREAS);
-    }
+   //tabla USUARIOS
+   private String QRY_CREATE_TABLE_USUARIOS = "CREATE TABLE TABLA_" + TABLA_USUARIOS + "(" +
+         USUARIOS_KEY_USUARIO + " TEXT NOT NULL PRIMARY KEY," +
+         USUARIOS_KEY_NOMBRE + " TEXT NOT NULL," +
+         USUARIOS_KEY_PASSWORD + " TEXT NOT NULL)";
+   private String QRY_DROP_TABLE_USUARIOS = "DROP TABLE IF EXISTS " + TABLA_USUARIOS;
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.d("MySqlOpenHelper->onUpgrade", "Drop tabla USUARIOS");
-        db.execSQL(QRY_DROP_TABLE_USUARIOS);
-        Log.d("MySqlOpenHelper->onUpgrade", "Drop tabla TAREAS");
-        db.execSQL(QRY_DROP_TABLE_TAREAS);
-        onCreate(db);
-    }
+   //tabla TAREAS
+   private String QRY_CREATE_TABLE_TAREAS = "CREATE TABLE " + TABLA_TAREAS + "(" +
+         TAREAS_KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+         TAREAS_KEY_USUARIO_ID + " TEXT NOT NULL," +
+         TAREAS_KEY_NOMBRE + " TEXT NOT NULL," +
+         TAREAS_KEY_DESCRIPCION + " TEXT NOT NULL," +
+         TAREAS_KEY_FECHA + " TEXT NOT NULL," +
+         TAREAS_KEY_HORA + " TEXT NOT NULL)";
+   private String QRY_DROP_TABLE_TAREAS = "DROP TABLE IF EXISTS " + TABLA_TAREAS;
+
+   public MySqlOpenHelper(Context context) {
+      super(context, DATABASE_NAME, null, DATABASE_VERSION);
+      //la base de datos se crea en la carpeta "DATABASE".
+      Log.d(getClass().toString(), "Constructor-> crea databse");
+   }
+
+   @Override
+   public void onCreate(SQLiteDatabase db) {
+      Log.d(getClass().toString(), "onCreate: Creando tabla "+TABLA_USUARIOS);
+      db.execSQL(QRY_CREATE_TABLE_USUARIOS);
+      Log.d(getClass().toString(), "onCreate: Creando tabla "+TABLA_TAREAS);
+      db.execSQL(QRY_CREATE_TABLE_TAREAS);
+   }
+
+   @Override
+   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+      Log.d(getClass().toString(), "onCreate: Drop tabla "+TABLA_USUARIOS);
+      db.execSQL(QRY_DROP_TABLE_USUARIOS);
+      Log.d(getClass().toString(), "onCreate: Drop tabla "+TABLA_TAREAS);
+      db.execSQL(QRY_DROP_TABLE_TAREAS);
+      onCreate(db);
+   }
 }

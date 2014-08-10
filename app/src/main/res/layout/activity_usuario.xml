@@ -80,5 +80,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Usuario/Contraseña errada"
-        android:visibility="gone" />
+        android:visibility="gone"
+        style="@style/EstiloTextView.Warning" />
 </RelativeLayout>
