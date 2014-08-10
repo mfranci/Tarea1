@@ -38,7 +38,8 @@ public class TareaDAO {
 
         //insertar con ContentValue
         ContentValues valores = new ContentValues();
-        valores.put("id", tarea.getId());
+        //valores.put("id", tarea.getId());
+        valores.put("usuario_id", tarea.getUsuario_id());
         valores.put("nombre", tarea.getNombre());
         valores.put("descripcion", tarea.getDescripcion());
         valores.put("fecha", tarea.getFecha());
@@ -49,7 +50,8 @@ public class TareaDAO {
     public void update(Tarea tarea) {
         Log.d(getClass().toString(), "update()");
         String strSQL = "UPDATE tareas" +
-                " SET nombre='" + tarea.getNombre() + "'" +
+                " SET usuario_id='" + tarea.getUsuario_id() + "'" +
+                " nombre='" + tarea.getNombre() + "'" +
                 ",descripcion='" + tarea.getDescripcion() + "'" +
                 ",fecha='" + tarea.getFecha() + "'" +
                 ",hora='" + tarea.getHora() + "'" +
@@ -57,21 +59,24 @@ public class TareaDAO {
         db.execSQL(strSQL);
     }
 
-    private String[] columnas = {"id", "nombre", "descripcion", "fecha", "hora"};
+    private String[] columnas = {"id", "usuario_id", "nombre", "descripcion", "fecha", "hora"};
 
-    public List<Tarea> getAll() {
+    public List<Tarea> getAll(String usuario_id) {
         List<Tarea> tareas = new ArrayList<Tarea>();
-        Cursor cursor = db.query("tareas", columnas, null, null, null, null, null);
+        String qryWHERE = "usuario_id='" + usuario_id + "'";
+        Cursor cursor = db.query("tareas", columnas, qryWHERE, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             tareas.add(
                     new Tarea(
-                        cursor.getInt(cursor.getColumnIndex("id")),
-                        cursor.getString(cursor.getColumnIndex("nombre")),
-                        cursor.getString(cursor.getColumnIndex("descripcion")),
-                        cursor.getString(cursor.getColumnIndex("fecha")),
-                        cursor.getString(cursor.getColumnIndex("hora"))
-                    ));
+                            cursor.getInt(cursor.getColumnIndex("id")),
+                            cursor.getString(cursor.getColumnIndex("usuario_id")),
+                            cursor.getString(cursor.getColumnIndex("nombre")),
+                            cursor.getString(cursor.getColumnIndex("descripcion")),
+                            cursor.getString(cursor.getColumnIndex("fecha")),
+                            cursor.getString(cursor.getColumnIndex("hora"))
+                    )
+            );
             cursor.moveToNext();
         }
         cursor.close();
@@ -88,10 +93,11 @@ public class TareaDAO {
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor != null) {
-            if(cursor.getCount()>0){
+            if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
 
                 tarea = new Tarea(cursor.getInt(cursor.getColumnIndex("id"))
+                        , cursor.getString(cursor.getColumnIndex("usuario_id"))
                         , cursor.getString(cursor.getColumnIndex("nombre"))
                         , cursor.getString(cursor.getColumnIndex("descripcion"))
                         , cursor.getString(cursor.getColumnIndex("fecha"))

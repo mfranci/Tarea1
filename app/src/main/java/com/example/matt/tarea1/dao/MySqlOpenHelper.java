@@ -17,6 +17,7 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
 
     //tabla TAREAS
     private String QRY_CREATE_TABLE_TAREAS = "CREATE TABLE tareas(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "usuario_id TEXT NOT NULL," +
             "nombre TEXT NOT NULL," +
             "descripcion TEXT NOT NULL," +
             "fecha TEXT NOT NULL," +
@@ -24,7 +25,7 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
     private String QRY_DROP_TABLE_TAREAS = "DROP TABLE IF EXISTS tareas";
 
     public MySqlOpenHelper(Context context) {
-        super(context, "agenda.db", null, 2);
+        super(context, "agenda.db", null, 3);
         //la base de datos se crea en la carpeta "DATABASE".
         Log.d("MySqlOpenHelper", "Constructor-> crea databse");
     }

@@ -5,13 +5,24 @@ package com.example.matt.tarea1.domain;
  */
 public class Tarea {
     private int id;
+    private String usuario_id;
     private String nombre;
     private String descripcion;
     private String fecha;
     private String hora;
 
-    public Tarea(int id, String nombre, String descripcion, String fecha, String hora) {
+
+    public Tarea(String usuario_id, String nombre, String descripcion, String fecha, String hora) {
+        this.usuario_id = usuario_id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+
+    public Tarea(int id, String usuario_id, String nombre, String descripcion, String fecha, String hora) {
         this.id = id;
+        this.usuario_id = usuario_id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
@@ -24,6 +35,14 @@ public class Tarea {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(String usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
     public String getNombre() {

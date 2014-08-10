@@ -11,7 +11,9 @@
         android:text="NOMBRE TAREA"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="10dp"
+        android:onClick="editarTarea"/>
+    <!-- ver de hacer el onclick editarTarea -->
 
     <TextView
         android:id="@+id/txtFechaTarea"

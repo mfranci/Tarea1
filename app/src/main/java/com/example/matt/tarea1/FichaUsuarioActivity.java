@@ -84,8 +84,15 @@ public class FichaUsuarioActivity extends Activity {
             Log.d(this.getClass().toString(), "Asignar aleatoreo");
 
             //genero id aleatoreo del avatar
-            int[] lstImgRsAvatar = {R.drawable.ic_avatar_01,R.drawable.ic_avatar_02,R.drawable.ic_avatar_03,
-                    R.drawable.ic_avatar_04,R.drawable.ic_avatar_05,R.drawable.ic_avatar_06,};
+            int[] lstImgRsAvatar = {
+                    R.drawable.ic_avatar_01,
+                    R.drawable.ic_avatar_02,
+                    R.drawable.ic_avatar_03,
+                    R.drawable.ic_avatar_04,
+                    R.drawable.ic_avatar_05,
+                    R.drawable.ic_avatar_06
+            };
+
             Random random = new Random();
             int randomNumber = random.nextInt(5);
             imgRsrcAvatar = lstImgRsAvatar[randomNumber];

@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.matt.tarea1.NuevaTareaActivity">
+
+    <EditText
+        android:id="@+id/txtNombreTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese nombre tarea"
+        android:ems="20" />
+
+    <EditText
+        android:id="@+id/txtDescripcionTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese descripción tarea"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:ems="20"
+        android:layout_below="@id/txtNombreTareaNew"/>
+
+    <TextView
+        android:id="@+id/lblFechaTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:layout_below="@id/txtDescripcionTareaNew"/>
+    <EditText
+        android:id="@+id/txtFechaTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese fecha"
+        android:ems="10"
+        android:layout_toRightOf="@+id/lblFechaTareaNew"
+        android:layout_below="@id/txtDescripcionTareaNew"
+        android:onClick="abrirDatePicker"
+        />
+
+    <TextView
+        android:id="@+id/lblHoraTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:layout_below="@id/txtFechaTareaNew"/>
+    <EditText
+        android:id="@+id/txtHoraTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese hora"
+        android:ems="10"
+        android:layout_below="@+id/txtFechaTareaNew"
+        android:layout_alignStart="@+id/txtFechaTareaNew"
+        android:onClick="abrirTimePicker"/>
+
+    <Button
+        android:id="@+id/btnGuardarTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="accion_guardar_tarea"
+        android:layout_below="@+id/txtHoraTareaNew"
+        android:layout_alignParentStart="true"
+        android:text="Guardar" />
+
+</RelativeLayout>
