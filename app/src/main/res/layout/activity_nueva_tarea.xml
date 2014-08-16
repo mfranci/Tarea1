@@ -66,6 +66,8 @@
         android:onClick="accion_guardar_tarea"
         android:layout_below="@+id/txtHoraTareaNew"
         android:layout_alignParentStart="true"
-        android:text="Guardar" />
+        android:text="Guardar"
+        style="@style/Botones"
+        />
 
 </RelativeLayout>

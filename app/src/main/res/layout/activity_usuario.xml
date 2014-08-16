@@ -61,7 +61,9 @@
             android:layout_below="@+id/lblPassword1"
             android:layout_marginTop="19dp"
             android:onClick="accionIngresar"
-            android:text="Ingresar" />
+            android:text="Ingresar"
+            style="@style/Botones"
+            />
 
         <Button
             android:layout_width="wrap_content"
@@ -69,7 +71,8 @@
             android:layout_alignTop="@+id/btnIngresar"
             android:layout_toLeftOf="@+id/btnIngresar"
             android:onClick="accionCancelar"
-            android:text="Cancelar" />
+            android:text="Cancelar"
+            style="@style/Botones" />
 
     </RelativeLayout>
 

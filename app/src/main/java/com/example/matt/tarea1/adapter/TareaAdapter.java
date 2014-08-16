@@ -1,4 +1,4 @@
-package com.example.matt.tarea1;
+package com.example.matt.tarea1.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.matt.tarea1.R;
 import com.example.matt.tarea1.domain.Tarea;
 
 import java.util.List;

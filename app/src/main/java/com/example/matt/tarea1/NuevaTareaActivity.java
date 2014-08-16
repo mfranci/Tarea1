@@ -8,11 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.matt.tarea1.R;
 import com.example.matt.tarea1.dao.TareaDAO;
 import com.example.matt.tarea1.domain.Tarea;
-
-import java.util.List;
 
 public class NuevaTareaActivity extends Activity {
     TareaDAO tareaDAO;
@@ -25,7 +22,7 @@ public class NuevaTareaActivity extends Activity {
         setContentView(R.layout.activity_nueva_tarea);
 
         tareaDAO = new TareaDAO(this);
-        tareaDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
+        //tareaDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
 
         //traigo por extra el id del usuario.
         Bundle bundle = getIntent().getExtras();

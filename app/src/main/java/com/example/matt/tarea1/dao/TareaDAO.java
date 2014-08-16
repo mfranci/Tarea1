@@ -35,6 +35,9 @@ public class TareaDAO {
    public void insert(Tarea tarea) {
       Log.d(getClass().toString(), "insert()");
 
+      //conecto BD
+      open();
+
       ContentValues valores = new ContentValues();
       valores.put(MySqlOpenHelper.TAREAS_KEY_USUARIO_ID, tarea.getUsuario_id());
       valores.put(MySqlOpenHelper.TAREAS_KEY_NOMBRE, tarea.getNombre());
@@ -42,10 +45,16 @@ public class TareaDAO {
       valores.put(MySqlOpenHelper.TAREAS_KEY_FECHA, tarea.getFecha());
       valores.put(MySqlOpenHelper.TAREAS_KEY_HORA, tarea.getHora());
       db.insert(MySqlOpenHelper.TABLA_TAREAS, null, valores);
+
+      //conecto BD
+      open();
    }
 
    public void update(Tarea tarea) {
       Log.d(getClass().toString(), "update()");
+      //conecto BD
+      open();
+
       String strSQL = "UPDATE " + MySqlOpenHelper.TABLA_TAREAS +
             " SET " + MySqlOpenHelper.TAREAS_KEY_USUARIO_ID + "='" + tarea.getUsuario_id() + "'" +
             " " + MySqlOpenHelper.TAREAS_KEY_NOMBRE + "='" + tarea.getNombre() + "'" +
@@ -54,11 +63,17 @@ public class TareaDAO {
             "," + MySqlOpenHelper.TAREAS_KEY_HORA + "='" + tarea.getHora() + "'" +
             " WHERE " + MySqlOpenHelper.TAREAS_KEY_ID + "='" + tarea.getId() + "'";
       db.execSQL(strSQL);
+
+      //conecto BD
+      open();
    }
 
    private String[] columnas = {"id", "usuario_id", "nombre", "descripcion", "fecha", "hora"};
 
    public List<Tarea> getAll(String usuario_id) {
+      //conecto BD
+      open();
+
       List<Tarea> tareas = new ArrayList<Tarea>();
       String qryWHERE = MySqlOpenHelper.TAREAS_KEY_USUARIO_ID + "='" + usuario_id + "'";
       Cursor cursor = db.query(MySqlOpenHelper.TABLA_TAREAS, columnas, qryWHERE, null, null, null, null);
@@ -78,11 +93,17 @@ public class TareaDAO {
       }
       cursor.close();
 
+      //conecto BD
+      open();
+
       Log.d(getClass().toString(), "getAll()");
       return tareas;
    }
 
    public Tarea get(String argTareaId) {
+      //conecto BD
+      open();
+
       Tarea tarea = null;
 
       String selectQuery = "SELECT *" +
@@ -104,6 +125,9 @@ public class TareaDAO {
          }
          cursor.close();
       }
+
+      //conecto BD
+      open();
 
       Log.d(getClass().toString(), "get()");
       return tarea;

@@ -79,7 +79,8 @@
             android:layout_below="@+id/txtUser"
             android:layout_marginTop="71dp"
             android:onClick="accionVerPendientes"
-            android:text="Ver Pendientes" />
+            android:text="Ver Pendientes"
+            style="@style/Botones" />
 
         <Button
             android:id="@+id/button"
@@ -88,7 +89,8 @@
             android:layout_alignTop="@+id/btnIngresar"
             android:layout_toLeftOf="@+id/btnIngresar"
             android:onClick="accionActualizarUsuario"
-            android:text="Actualizar Usuario" />
+            android:text="Actualizar Usuario"
+            style="@style/Botones" />
     </RelativeLayout>
 
 </RelativeLayout>

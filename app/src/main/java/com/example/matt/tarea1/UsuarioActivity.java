@@ -26,13 +26,13 @@ public class UsuarioActivity extends Activity {
         setContentView(R.layout.activity_usuario);
 
         usuarioDAO = new UsuarioDAO(this);
-        usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
+        //usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
     }
 
     @Override
     protected void onStop() {
         Log.d(getClass().toString(), "onStop()");
-        usuarioDAO.close();
+        //usuarioDAO.close();
         super.onStop();
     }
 

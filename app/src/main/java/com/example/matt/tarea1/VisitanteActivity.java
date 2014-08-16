@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.matt.tarea1.R;
 import com.example.matt.tarea1.dao.UsuarioDAO;
 import com.example.matt.tarea1.domain.Usuario;
 
@@ -24,13 +23,13 @@ public class VisitanteActivity extends Activity {
         Log.d(getClass().toString(), "onCreate()");
 
         usuarioDAO = new UsuarioDAO(this);
-        usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
+        //usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
     }
 
     @Override
     protected void onStop() {
         Log.d(getClass().toString(), "onStop()");
-        usuarioDAO.close();
+        //usuarioDAO.close();
         super.onStop();
     }
 

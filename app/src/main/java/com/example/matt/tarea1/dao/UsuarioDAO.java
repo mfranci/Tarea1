@@ -34,6 +34,10 @@ public class UsuarioDAO {
 
    public void insert(Usuario usuario) {
       Log.d(getClass().toString(), "insert()");
+
+      //conecto BD
+      open();
+
       //db.execSQL("INSERT INTO usuarios(usuario,nombre,password)
       // values('" + usuario.getUsuario() + "','" + usuario.getNombre() + "','" + usuario.getPassword() + "')");
 
@@ -43,20 +47,33 @@ public class UsuarioDAO {
       valores.put(MySqlOpenHelper.USUARIOS_KEY_NOMBRE, usuario.getNombre());
       valores.put(MySqlOpenHelper.USUARIOS_KEY_PASSWORD, usuario.getPassword());
       db.insert(MySqlOpenHelper.TABLA_USUARIOS, null, valores);
+
+      //desconecto BD
+      close();
    }
 
    public void update(Usuario usuario) {
       Log.d(getClass().toString(), "update()");
+
+      //conecto BD
+      open();
+
       String strSQL = "UPDATE " + MySqlOpenHelper.TABLA_USUARIOS +
             " SET " + MySqlOpenHelper.USUARIOS_KEY_NOMBRE + "='" + usuario.getNombre() + "'" +
             "," + MySqlOpenHelper.USUARIOS_KEY_PASSWORD + "='" + usuario.getPassword() + "'" +
             " WHERE " + MySqlOpenHelper.USUARIOS_KEY_NOMBRE + "='" + usuario.getUsuario() + "'";
       db.execSQL(strSQL);
+
+      //desconecto BD
+      close();
    }
 
    private String[] columnas = {MySqlOpenHelper.USUARIOS_KEY_USUARIO, MySqlOpenHelper.USUARIOS_KEY_NOMBRE, MySqlOpenHelper.USUARIOS_KEY_PASSWORD};
 
    public List<Usuario> getAll() {
+      //conecto BD
+      open();
+
       List<Usuario> usuarios = new ArrayList<Usuario>();
       Cursor cursor = db.query(MySqlOpenHelper.TABLA_USUARIOS, columnas, null, null, null, null, null);
       cursor.moveToFirst();
@@ -67,10 +84,17 @@ public class UsuarioDAO {
       cursor.close();
 
       Log.d(getClass().toString(), "getAll()");
+
+      //desconecto BD
+      close();
+
       return usuarios;
    }
 
    public Usuario get(String argUsuario) {
+      //conecto BD
+      open();
+
       Usuario usuario = null;
         /*
         String[] tableColumns = new String[]{
@@ -96,6 +120,9 @@ public class UsuarioDAO {
          }
          cursor.close();
       }
+
+      //desconecto BD
+      close();
 
       Log.d(getClass().toString(), "get()");
       return usuario;

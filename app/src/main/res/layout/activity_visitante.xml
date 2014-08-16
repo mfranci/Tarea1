@@ -60,7 +60,9 @@
             android:layout_below="@+id/txtPassword2"
             android:ems="25"
             android:onClick="accionCrearUsuario"
-            android:text="@string/crear_usuario" />
+            android:text="@string/crear_usuario"
+            style="@style/Botones"
+            />
 
     </RelativeLayout>
 </RelativeLayout>

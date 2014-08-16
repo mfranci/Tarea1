@@ -16,8 +16,6 @@ import android.widget.Toast;
 import com.example.matt.tarea1.dao.UsuarioDAO;
 import com.example.matt.tarea1.domain.Usuario;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class FichaUsuarioActivity extends Activity {
@@ -33,7 +31,7 @@ public class FichaUsuarioActivity extends Activity {
         setContentView(R.layout.activity_ficha_usuario);
 
         usuarioDAO = new UsuarioDAO(this);
-        usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
+        //usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate
 
         Bundle bundle = getIntent().getExtras();
 
@@ -69,7 +67,7 @@ public class FichaUsuarioActivity extends Activity {
     @Override
     protected void onStop() {
         Log.d(getClass().toString(), "onStop()");
-        usuarioDAO.close();
+        //usuarioDAO.close();
         super.onStop();
     }
 
