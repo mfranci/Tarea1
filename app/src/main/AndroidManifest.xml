@@ -33,7 +33,7 @@
             android:label="@string/title_activity_agenda" >
         </activity>
         <activity
-            android:name=".NuevaTareaActivity"
+            android:name=".AgendaTareaActivity"
             android:label="@string/title_activity_nueva_tarea" >
         </activity>
     </application>

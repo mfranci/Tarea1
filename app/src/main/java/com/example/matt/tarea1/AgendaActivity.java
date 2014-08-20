@@ -4,8 +4,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.matt.tarea1.adapter.TareaAdapter;
@@ -35,8 +38,6 @@ public class AgendaActivity extends ListActivity {
         if (bundle.getString("INTENT_KEY_USUARIO") != null) {
             sUsuario = bundle.getString("INTENT_KEY_USUARIO");
             Toast.makeText(this, "Visualizando agenda de " + sUsuario, Toast.LENGTH_LONG).show();
-
-
         } else {
             Toast.makeText(this, "No existe parametro intent INTENT_KEY_USUARIO", Toast.LENGTH_LONG).show();
             Log.e(getClass().toString(), "No existe parametro intent INTENT_KEY_USUARIO");
@@ -73,7 +74,9 @@ public class AgendaActivity extends ListActivity {
 
           //por si cambió el adpter
           adapter.notifyDataSetChanged(); //nuevo
-          setListAdapter(adapter);
+           getListView().setAdapter(adapter);
+
+           registerForContextMenu(getListView()); //con getListView traigo el listview existente en el layout
        }else{
           Log.e(getClass().toString(), "Error al intentar leer la tabla tareas");
        }
@@ -102,12 +105,47 @@ public class AgendaActivity extends ListActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_tarea_new) {
-            Intent intent = new Intent(this,NuevaTareaActivity.class);
+            Intent intent = new Intent(this,AgendaTareaActivity.class);
             intent.putExtra("INTENT_KEY_USUARIO", sUsuario);
             startActivity(intent);
 
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.menu_contextual_tarea, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo(); //para identificar los datos del menú seleccionado
+        int valorSeleccionado = (int) info.id; //posición del elemento
+        Tarea tareaSeleccionada = tareas.get(valorSeleccionado);
+
+        switch (item.getItemId()) {
+            case R.id.action_editar_tarea:
+                Toast.makeText(this, "Editando item:"+tareaSeleccionada.getId(), Toast.LENGTH_LONG).show();
+
+                //llamo a editar tarea
+                Intent intent = new Intent(this, AgendaTareaActivity.class);
+                intent.putExtra("TAREA_KEY_TAREA", tareaSeleccionada.getId());
+                intent.putExtra("TAREA_KEY_USUARIO_ID", tareaSeleccionada.getUsuario_id());
+                intent.putExtra("TAREA_KEY_NOMBRE", tareaSeleccionada.getNombre());
+                intent.putExtra("TAREA_KEY_DESCRIPCION", tareaSeleccionada.getDescripcion());
+                intent.putExtra("TAREA_KEY_FECHA", tareaSeleccionada.getFecha());
+                intent.putExtra("TAREA_KEY_HORA", tareaSeleccionada.getHora());
+                startActivity(intent);
+                return true;
+
+            case R.id.action_eliminar_tarea:
+                Toast.makeText(this, "Eliminando item:"+tareaSeleccionada.getId(), Toast.LENGTH_LONG).show();
+
+                tareaDAO.delete(tareaSeleccionada.getId());
+                onResume(); //llamo para releer la lista
+                return true;
+        }
+        return super.onContextItemSelected(item);
     }
 }

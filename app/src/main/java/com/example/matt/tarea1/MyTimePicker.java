@@ -29,6 +29,5 @@ public class MyTimePicker extends DialogFragment implements TimePickerDialog.OnT
         //guardo el timePicker en el textView
         TextView txtHoraTareaNew = (TextView) getActivity().findViewById(R.id.txtHoraTareaNew);
         txtHoraTareaNew.setText(hourOfDay + ":" + minute);
-
     }
 }

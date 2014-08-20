@@ -21,5 +21,18 @@
     <string name="crear_usuario">Crear Usuario</string>
     <string name="nombre_usuario">Nombre Usuario:</string>
     <string name="NombreArchivoPreferenciasXML">com.example.matt.tarea1.nombreArchivoPreferencias</string>
+    <string name="usuario2">Usuario:</string>
+    <string name="password2">Password:</string>
+    <string name="ver_pendientes">Ver Pendientes</string>
+    <string name="actualizar_usuario">Actualizar Usuario</string>
+    <string name="ingrese_nombre_tarea">Ingrese nombre tarea</string>
+    <string name="ingrese_desc_tarea">Ingrese descripción tarea</string>
+    <string name="tarea_fecha">Fecha</string>
+    <string name="ingrese_fecha">Ingrese fecha</string>
+    <string name="hora">Hora</string>
+    <string name="ingrese_hora">Ingrese hora</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="user_pass_incorrecto">Usuario/Contraseña errada</string>
 
 </resources>

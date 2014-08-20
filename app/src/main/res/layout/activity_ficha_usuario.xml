@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblNombreUsuario"
             android:layout_marginTop="20dp"
-            android:text="Usuario:" />
+            android:text="@string/usuario2" />
 
         <EditText
             android:id="@+id/txtUser"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/txtPassWrd"
             android:layout_alignParentStart="true"
-            android:text="Password:" />
+            android:text="@string/password2" />
 
         <EditText
             android:id="@+id/txtPassWrd"
@@ -79,7 +79,7 @@
             android:layout_below="@+id/txtUser"
             android:layout_marginTop="71dp"
             android:onClick="accionVerPendientes"
-            android:text="Ver Pendientes"
+            android:text="@string/ver_pendientes"
             style="@style/Botones" />
 
         <Button
@@ -89,7 +89,7 @@
             android:layout_alignTop="@+id/btnIngresar"
             android:layout_toLeftOf="@+id/btnIngresar"
             android:onClick="accionActualizarUsuario"
-            android:text="Actualizar Usuario"
+            android:text="@string/actualizar_usuario"
             style="@style/Botones" />
     </RelativeLayout>
 

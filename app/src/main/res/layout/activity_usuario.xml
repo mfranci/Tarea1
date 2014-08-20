@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Usuario" />
+            android:text="@string/usuario2" />
 
         <EditText
             android:id="@+id/txtUsuario1"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lblUsuario1"
             android:layout_marginTop="20dp"
-            android:text="Password" />
+            android:text="@string/password2" />
 
         <EditText
             android:id="@+id/txtPassword1"
@@ -71,7 +71,7 @@
             android:layout_alignTop="@+id/btnIngresar"
             android:layout_toLeftOf="@+id/btnIngresar"
             android:onClick="accionCancelar"
-            android:text="Cancelar"
+            android:text="@string/btn_cancelar"
             style="@style/Botones" />
 
     </RelativeLayout>
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Usuario/Contraseña errada"
+        android:text="@string/user_pass_incorrecto"
         android:visibility="gone"
         style="@style/EstiloTextView.Warning" />
 </RelativeLayout>

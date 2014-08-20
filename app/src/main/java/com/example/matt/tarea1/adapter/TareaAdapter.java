@@ -41,9 +41,11 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
 
          TextView txtNombreTarea = (TextView) view.findViewById(R.id.txtNombreTarea);
          TextView txtFechaTarea = (TextView) view.findViewById(R.id.txtFechaTarea);
+         TextView txtDescripcionTarea = (TextView) view.findViewById(R.id.txtDescripcionTarea);
 
          viewHolder.txtNombreTarea = txtNombreTarea;
          viewHolder.txtFechaTarea = txtFechaTarea;
+         viewHolder.txtDescripcionTarea = txtDescripcionTarea;
 
          //toma el valor de la lista
          view.setTag(viewHolder);
@@ -56,6 +58,7 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
       ViewHolder viewHolder = (ViewHolder) view.getTag();
       viewHolder.txtNombreTarea.setText(tarea.getNombre());
       viewHolder.txtFechaTarea.setText(tarea.getFecha());
+      viewHolder.txtDescripcionTarea.setText(tarea.getDescripcion());
 
       return view;
    }
@@ -66,5 +69,6 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
    static class ViewHolder {
       public TextView txtNombreTarea;
       public TextView txtFechaTarea;
+      public TextView txtDescripcionTarea;
    }
 }

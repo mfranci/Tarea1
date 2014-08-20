@@ -6,54 +6,58 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.matt.tarea1.NuevaTareaActivity">
+    tools:context="com.example.matt.tarea1.AgendaTareaActivity">
 
+    <!-- Tarea nombre -->
     <EditText
         android:id="@+id/txtNombreTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Ingrese nombre tarea"
+        android:hint="@string/ingrese_nombre_tarea"
         android:ems="20" />
 
+    <!-- Tarea descripcion -->
     <EditText
         android:id="@+id/txtDescripcionTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Ingrese descripción tarea"
+        android:hint="@string/ingrese_desc_tarea"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:lines="5"
         android:ems="20"
         android:layout_below="@id/txtNombreTareaNew"/>
 
+    <!-- Tarea fecha -->
     <TextView
         android:id="@+id/lblFechaTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha"
+        android:text="@string/tarea_fecha"
         android:layout_below="@id/txtDescripcionTareaNew"/>
     <EditText
         android:id="@+id/txtFechaTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Ingrese fecha"
+        android:hint="@string/ingrese_fecha"
         android:ems="10"
         android:layout_toRightOf="@+id/lblFechaTareaNew"
         android:layout_below="@id/txtDescripcionTareaNew"
         android:onClick="abrirDatePicker"
         />
 
+    <!-- Tarea hora -->
     <TextView
         android:id="@+id/lblHoraTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hora"
+        android:text="@string/hora"
         android:layout_below="@id/txtFechaTareaNew"/>
     <EditText
         android:id="@+id/txtHoraTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Ingrese hora"
+        android:hint="@string/ingrese_hora"
         android:ems="10"
         android:layout_below="@+id/txtFechaTareaNew"
         android:layout_alignStart="@+id/txtFechaTareaNew"
@@ -66,7 +70,7 @@
         android:onClick="accion_guardar_tarea"
         android:layout_below="@+id/txtHoraTareaNew"
         android:layout_alignParentStart="true"
-        android:text="Guardar"
+        android:text="@string/btn_guardar"
         style="@style/Botones"
         />
 

@@ -134,6 +134,15 @@ public class TareaDAO {
    }
 
    public void delete(int id) {
+       Log.d(getClass().toString(), "delete()");
+       //conecto BD
+       open();
 
+       String strSQL = "DELETE FROM " + MySqlOpenHelper.TABLA_TAREAS +
+               " WHERE " + MySqlOpenHelper.TAREAS_KEY_ID + "='" + id + "'";
+       db.execSQL(strSQL);
+
+       //conecto BD
+       open();
    }
 }
