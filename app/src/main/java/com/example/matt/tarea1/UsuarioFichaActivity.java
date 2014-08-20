@@ -18,7 +18,7 @@ import com.example.matt.tarea1.domain.Usuario;
 
 import java.util.Random;
 
-public class FichaUsuarioActivity extends Activity {
+public class UsuarioFichaActivity extends Activity {
     UsuarioDAO usuarioDAO;
     Usuario usuario = null;
 
@@ -28,7 +28,7 @@ public class FichaUsuarioActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(getClass().toString(), "onCreate()");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ficha_usuario);
+        setContentView(R.layout.activity_usuario_ficha);
 
         usuarioDAO = new UsuarioDAO(this);
         //usuarioDAO.open(); //se ejecuta el metodo MySqlOpenHelper.onCreate

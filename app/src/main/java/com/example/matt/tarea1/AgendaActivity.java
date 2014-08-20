@@ -21,7 +21,7 @@ import java.util.List;
 
 public class AgendaActivity extends ListActivity {
     TareaDAO tareaDAO;
-    Tarea tarea= null;
+    Tarea tarea = null;
     List<Tarea> tareas;
     String sUsuario;
     Tarea tareaSeleccionada;
@@ -51,38 +51,38 @@ public class AgendaActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       Log.d(getClass().toString(), "onResume()");
+        Log.d(getClass().toString(), "onResume()");
 
-       //tareas = new ArrayList<Tarea>(); //no es necesario hacer esto
-       tareas = tareaDAO.getAll(sUsuario);
+        //tareas = new ArrayList<Tarea>(); //no es necesario hacer esto
+        tareas = tareaDAO.getAll(sUsuario);
 
-       //si está vacío entonces cargo
-       if(tareas == null || tareas.size() == 0){
-          //cargo temporalmente varias tareas.
-          for (int i = 0; i < 5; i++) {
-             tareaDAO.insert(new Tarea(i,sUsuario, "Nombre tarea "+i,"Descripcion", i+"/08/2014",i+":00"));
-          }
-          Toast.makeText(this, "Carga de tareas de ejemplo finalizado", Toast.LENGTH_LONG).show();
-          Log.d(getClass().toString(), "Carga de tareas de ejemplo finalizado");
+        //si está vacío entonces cargo
+        if (tareas == null || tareas.size() == 0) {
+            //cargo temporalmente varias tareas.
+            for (int i = 0; i < 5; i++) {
+                tareaDAO.insert(new Tarea(i, sUsuario, "Nombre tarea " + i, "Descripcion", i + "/08/2014", i + ":00", R.drawable.ic_prioridad_1));
+            }
+            Toast.makeText(this, "Carga de tareas de ejemplo finalizado", Toast.LENGTH_LONG).show();
+            Log.d(getClass().toString(), "Carga de tareas de ejemplo finalizado");
 
-          //vuelvo a leer
-          tareas = tareaDAO.getAll(sUsuario);
-       }
+            //vuelvo a leer
+            tareas = tareaDAO.getAll(sUsuario);
+        }
 
-       if (tareas != null && tareas.size() > 0 ) {
-          Toast.makeText(this, "Mostrando listado de tareas", Toast.LENGTH_LONG).show();
-          Log.d(getClass().toString(), "Mostrando listado de tareas");
+        if (tareas != null && tareas.size() > 0) {
+            Toast.makeText(this, "Mostrando listado de tareas", Toast.LENGTH_LONG).show();
+            Log.d(getClass().toString(), "Mostrando listado de tareas");
 
-          TareaAdapter adapter = new TareaAdapter(this, R.layout.item_tarea, tareas);
+            TareaAdapter adapter = new TareaAdapter(this, R.layout.item_tarea, tareas);
 
-          //por si cambió el adpter
-          adapter.notifyDataSetChanged(); //nuevo
-           getListView().setAdapter(adapter);
+            //por si cambió el adpter
+            adapter.notifyDataSetChanged(); //nuevo
+            getListView().setAdapter(adapter);
 
-           registerForContextMenu(getListView()); //con getListView traigo el listview existente en el layout
-       }else{
-          Log.e(getClass().toString(), "Error al intentar leer la tabla tareas");
-       }
+            registerForContextMenu(getListView()); //con getListView traigo el listview existente en el layout
+        } else {
+            Log.e(getClass().toString(), "Error al intentar leer la tabla tareas");
+        }
 
         //hacer que acceda a BD para que refresque.
     }
@@ -108,7 +108,7 @@ public class AgendaActivity extends ListActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_tarea_new) {
-            Intent intent = new Intent(this,AgendaTareaActivity.class);
+            Intent intent = new Intent(this, AgendaTareaActivity.class);
             intent.putExtra("INTENT_KEY_USUARIO", sUsuario);
             startActivity(intent);
 
@@ -129,7 +129,7 @@ public class AgendaActivity extends ListActivity {
 
         switch (item.getItemId()) {
             case R.id.action_editar_tarea:
-                Toast.makeText(this, "Editando item:"+tareaSeleccionada.getId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Editando item:" + tareaSeleccionada.getId(), Toast.LENGTH_LONG).show();
 
                 //llamo a editar tarea
                 Intent intent = new Intent(this, AgendaTareaActivity.class);
@@ -139,6 +139,7 @@ public class AgendaActivity extends ListActivity {
                 intent.putExtra("TAREA_KEY_DESCRIPCION", tareaSeleccionada.getDescripcion());
                 intent.putExtra("TAREA_KEY_FECHA", tareaSeleccionada.getFecha());
                 intent.putExtra("TAREA_KEY_HORA", tareaSeleccionada.getHora());
+                intent.putExtra("TAREA_KEY_PRIORIDAD", tareaSeleccionada.getPrioridad());
                 startActivity(intent);
                 return true;
 
@@ -149,7 +150,7 @@ public class AgendaActivity extends ListActivity {
                 alertDialog.setIcon(R.drawable.ic_action_delete);
 
                 alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int which) {
+                    public void onClick(DialogInterface dialog, int which) {
                         tareaDAO.delete(tareaSeleccionada.getId());
                         onResume(); //llamo para releer la lista
                     }

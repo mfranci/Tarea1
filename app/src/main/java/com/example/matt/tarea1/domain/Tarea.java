@@ -10,23 +10,27 @@ public class Tarea {
     private String descripcion;
     private String fecha;
     private String hora;
+    private int prioridad;
 
 
-    public Tarea(String usuario_id, String nombre, String descripcion, String fecha, String hora) {
+    public Tarea(String usuario_id, String nombre, String descripcion, String fecha, String hora, int prioridad) {
         this.usuario_id = usuario_id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.hora = hora;
+        this.prioridad = prioridad;
     }
 
-    public Tarea(int id, String usuario_id, String nombre, String descripcion, String fecha, String hora) {
+    public Tarea(int id, String usuario_id, String nombre, String descripcion, String fecha, String hora, int prioridad) {
         this.id = id;
         this.usuario_id = usuario_id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.hora = hora;
+        this.prioridad = prioridad;
+
     }
 
     public int getId() {
@@ -75,5 +79,13 @@ public class Tarea {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
     }
 }

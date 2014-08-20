@@ -44,6 +44,7 @@ public class TareaDAO {
       valores.put(MySqlOpenHelper.TAREAS_KEY_DESCRIPCION, tarea.getDescripcion());
       valores.put(MySqlOpenHelper.TAREAS_KEY_FECHA, tarea.getFecha());
       valores.put(MySqlOpenHelper.TAREAS_KEY_HORA, tarea.getHora());
+      valores.put(MySqlOpenHelper.TAREAS_KEY_PRIORIDAD, tarea.getPrioridad());
       db.insert(MySqlOpenHelper.TABLA_TAREAS, null, valores);
 
       //conecto BD
@@ -57,10 +58,11 @@ public class TareaDAO {
 
       String strSQL = "UPDATE " + MySqlOpenHelper.TABLA_TAREAS +
             " SET " + MySqlOpenHelper.TAREAS_KEY_USUARIO_ID + "='" + tarea.getUsuario_id() + "'" +
-            " " + MySqlOpenHelper.TAREAS_KEY_NOMBRE + "='" + tarea.getNombre() + "'" +
+            "," + MySqlOpenHelper.TAREAS_KEY_NOMBRE + "='" + tarea.getNombre() + "'" +
             "," + MySqlOpenHelper.TAREAS_KEY_DESCRIPCION + "='" + tarea.getDescripcion() + "'" +
             "," + MySqlOpenHelper.TAREAS_KEY_FECHA + "='" + tarea.getFecha() + "'" +
             "," + MySqlOpenHelper.TAREAS_KEY_HORA + "='" + tarea.getHora() + "'" +
+            "," + MySqlOpenHelper.TAREAS_KEY_PRIORIDAD + "='" + tarea.getPrioridad() + "'" +
             " WHERE " + MySqlOpenHelper.TAREAS_KEY_ID + "='" + tarea.getId() + "'";
       db.execSQL(strSQL);
 
@@ -68,7 +70,15 @@ public class TareaDAO {
       open();
    }
 
-   private String[] columnas = {"id", "usuario_id", "nombre", "descripcion", "fecha", "hora"};
+   private String[] columnas = {
+                           MySqlOpenHelper.TAREAS_KEY_ID,
+                           MySqlOpenHelper.TAREAS_KEY_USUARIO_ID,
+                           MySqlOpenHelper.TAREAS_KEY_NOMBRE,
+                           MySqlOpenHelper.TAREAS_KEY_DESCRIPCION,
+                           MySqlOpenHelper.TAREAS_KEY_FECHA,
+                           MySqlOpenHelper.TAREAS_KEY_HORA,
+                           MySqlOpenHelper.TAREAS_KEY_PRIORIDAD
+                   };
 
    public List<Tarea> getAll(String usuario_id) {
       //conecto BD
@@ -86,7 +96,8 @@ public class TareaDAO {
                      cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_NOMBRE)),
                      cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_DESCRIPCION)),
                      cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_FECHA)),
-                     cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_HORA))
+                     cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_HORA)),
+                     cursor.getInt(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_PRIORIDAD))
                )
          );
          cursor.moveToNext();
@@ -116,12 +127,13 @@ public class TareaDAO {
          if (cursor.getCount() > 0) {
             cursor.moveToFirst();
 
-            tarea = new Tarea(cursor.getInt(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_ID))
-                  , cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_USUARIO_ID))
-                  , cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_NOMBRE))
-                  , cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_DESCRIPCION))
-                  , cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_FECHA))
-                  , cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_HORA)));
+            tarea = new Tarea(cursor.getInt(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_ID)),
+                  cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_USUARIO_ID)),
+                  cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_NOMBRE)),
+                  cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_DESCRIPCION)),
+                  cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_FECHA)),
+                  cursor.getString(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_HORA)),
+                  cursor.getInt(cursor.getColumnIndex(MySqlOpenHelper.TAREAS_KEY_PRIORIDAD)));
          }
          cursor.close();
       }

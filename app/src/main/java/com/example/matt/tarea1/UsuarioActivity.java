@@ -76,7 +76,7 @@ public class UsuarioActivity extends Activity {
 
             if (usuario != null) {
                 //usuario logeado
-                Intent intent = new Intent(this, FichaUsuarioActivity.class);
+                Intent intent = new Intent(this, UsuarioFichaActivity.class);
                 intent.putExtra("INTENT_KEY_USUARIO", usuario.getUsuario());
                 startActivity(intent);
             } else {

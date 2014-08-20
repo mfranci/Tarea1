@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.matt.tarea1.R;
@@ -42,10 +43,12 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
          TextView txtNombreTarea = (TextView) view.findViewById(R.id.txtNombreTarea);
          TextView txtFechaTarea = (TextView) view.findViewById(R.id.txtFechaTarea);
          TextView txtDescripcionTarea = (TextView) view.findViewById(R.id.txtDescripcionTarea);
+         ImageView imgPrioridadTarea = (ImageView) view.findViewById(R.id.imgPrioridadTarea);
 
          viewHolder.txtNombreTarea = txtNombreTarea;
          viewHolder.txtFechaTarea = txtFechaTarea;
          viewHolder.txtDescripcionTarea = txtDescripcionTarea;
+         viewHolder.imgPrioridadTarea = imgPrioridadTarea;
 
          //toma el valor de la lista
          view.setTag(viewHolder);
@@ -59,6 +62,7 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
       viewHolder.txtNombreTarea.setText(tarea.getNombre());
       viewHolder.txtFechaTarea.setText(tarea.getFecha());
       viewHolder.txtDescripcionTarea.setText(tarea.getDescripcion());
+      viewHolder.imgPrioridadTarea.setImageResource(tarea.getPrioridad());
 
       return view;
    }
@@ -70,5 +74,6 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
       public TextView txtNombreTarea;
       public TextView txtFechaTarea;
       public TextView txtDescripcionTarea;
+      public ImageView imgPrioridadTarea;
    }
 }

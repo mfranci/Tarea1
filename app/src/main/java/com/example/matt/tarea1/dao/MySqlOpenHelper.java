@@ -9,7 +9,7 @@ import android.util.Log;
  * Created by Matias FRANCI on 08/08/2014.
  */
 public class MySqlOpenHelper extends SQLiteOpenHelper {
-   public static final int DATABASE_VERSION = 5; // versión de DB
+   public static final int DATABASE_VERSION = 7; // versión de DB
    public static final String DATABASE_NAME = "agenda.db";
    public static final String TABLA_USUARIOS = "usuarios";
    public static final String TABLA_TAREAS = "tareas";
@@ -26,6 +26,7 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
    public static final String TAREAS_KEY_DESCRIPCION = "descripcion";
    public static final String TAREAS_KEY_FECHA = "fecha";
    public static final String TAREAS_KEY_HORA = "hora";
+   public static final String TAREAS_KEY_PRIORIDAD = "prioridad";
 
    //tabla USUARIOS
    private String QRY_CREATE_TABLE_USUARIOS = "CREATE TABLE " + TABLA_USUARIOS + "(" +
@@ -41,7 +42,8 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
          TAREAS_KEY_NOMBRE + " TEXT NOT NULL," +
          TAREAS_KEY_DESCRIPCION + " TEXT NOT NULL," +
          TAREAS_KEY_FECHA + " TEXT NOT NULL," +
-         TAREAS_KEY_HORA + " TEXT NOT NULL)";
+         TAREAS_KEY_HORA + " TEXT NOT NULL," +
+         TAREAS_KEY_PRIORIDAD + " INTEGER NOT NULL)";
    private String QRY_DROP_TABLE_TAREAS = "DROP TABLE IF EXISTS " + TABLA_TAREAS;
 
    public MySqlOpenHelper(Context context) {

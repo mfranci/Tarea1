@@ -63,15 +63,32 @@
         android:layout_alignStart="@+id/txtFechaTareaNew"
         android:onClick="abrirTimePicker"/>
 
+    <!-- Tarea prioridad -->
+    <TextView
+        android:id="@+id/lblPrioridadTareaNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prioridad"
+        android:layout_below="@+id/txtHoraTareaNew"
+        android:layout_alignParentStart="true" />
+    <Spinner
+        android:id="@+id/spPrioridad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/lblPrioridadTareaNew"
+        android:layout_below="@+id/txtHoraTareaNew"
+        android:entries="@array/prioridad_tarea_array"
+        >
+    </Spinner>
+
     <Button
         android:id="@+id/btnGuardarTareaNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="accion_guardar_tarea"
-        android:layout_below="@+id/txtHoraTareaNew"
-        android:layout_alignParentStart="true"
         android:text="@string/btn_guardar"
         style="@style/Botones"
-        />
+        android:layout_below="@+id/spPrioridad"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
