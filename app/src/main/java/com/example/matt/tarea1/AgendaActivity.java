@@ -1,6 +1,8 @@
 package com.example.matt.tarea1;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +24,7 @@ public class AgendaActivity extends ListActivity {
     Tarea tarea= null;
     List<Tarea> tareas;
     String sUsuario;
+    Tarea tareaSeleccionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +125,7 @@ public class AgendaActivity extends ListActivity {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo(); //para identificar los datos del menú seleccionado
         int valorSeleccionado = (int) info.id; //posición del elemento
-        Tarea tareaSeleccionada = tareas.get(valorSeleccionado);
+        tareaSeleccionada = tareas.get(valorSeleccionado);
 
         switch (item.getItemId()) {
             case R.id.action_editar_tarea:
@@ -140,10 +143,26 @@ public class AgendaActivity extends ListActivity {
                 return true;
 
             case R.id.action_eliminar_tarea:
-                Toast.makeText(this, "Eliminando item:"+tareaSeleccionada.getId(), Toast.LENGTH_LONG).show();
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("Confirmar...");
+                alertDialog.setMessage("¿Está seguro de eliminar?");
+                alertDialog.setIcon(R.drawable.ic_action_delete);
 
-                tareaDAO.delete(tareaSeleccionada.getId());
-                onResume(); //llamo para releer la lista
+                alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int which) {
+                        tareaDAO.delete(tareaSeleccionada.getId());
+                        onResume(); //llamo para releer la lista
+                    }
+                });
+
+                alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                alertDialog.show();
+
                 return true;
         }
         return super.onContextItemSelected(item);
