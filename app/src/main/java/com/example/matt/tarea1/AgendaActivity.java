@@ -60,7 +60,7 @@ public class AgendaActivity extends ListActivity {
         if (tareas == null || tareas.size() == 0) {
             //cargo temporalmente varias tareas.
             for (int i = 0; i < 5; i++) {
-                tareaDAO.insert(new Tarea(i, sUsuario, "Nombre tarea " + i, "Descripcion", i + "/08/2014", i + ":00", R.drawable.ic_prioridad_1));
+                tareaDAO.insert(new Tarea(i, sUsuario, "Nombre tarea " + i, "Descripcion", "01/08/2014","01:00", R.drawable.ic_prioridad_1));
             }
             Toast.makeText(this, "Carga de tareas de ejemplo finalizado", Toast.LENGTH_LONG).show();
             Log.d(getClass().toString(), "Carga de tareas de ejemplo finalizado");
