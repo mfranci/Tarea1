@@ -61,7 +61,7 @@ public class TareaAdapter extends ArrayAdapter<Tarea> {
       ViewHolder viewHolder = (ViewHolder) view.getTag();
       viewHolder.txtNombreTarea.setText(tarea.getNombre());
       viewHolder.txtFechaTarea.setText(tarea.getFecha());
-      viewHolder.txtDescripcionTarea.setText(tarea.getDescripcion());
+      viewHolder.txtDescripcionTarea.setText(tarea.getDescripcion(true));
       viewHolder.imgPrioridadTarea.setImageResource(tarea.getPrioridad());
 
       return view;

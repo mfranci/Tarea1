@@ -61,6 +61,18 @@ public class Tarea {
         return descripcion;
     }
 
+    /**
+     * Acorta la descripción y agrega ...
+     * @param acortar = si es true acorta
+     * @return
+     */
+    public String getDescripcion(boolean acortar) {
+        if(acortar && descripcion.length() > 29){
+           descripcion = descripcion.substring(0, 29) + "...";
+        }
+        return descripcion;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
